@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>新闻人物言论自动提取</title>
+        <link type="text/css" href="/static/css/bootstrap.css" rel="stylesheet">
+        <link rel="stylesheet" href="./static/css/bootstrap-theme.css">
+        <script src="./static/js/jquery.js"></script>
+        <script src="./static/js/bootstrap.js"></script>
+
+        <script>
+                function myfunction(){
+                    var str = '{{name}}';
+                    var a = str.replace(/&quot;/g,"\"");
+                    var data = JSON.parse(a);
+                    head = '<table class="table"><caption>新闻摘要</caption><thead> \
+                                <tr><th>摘要</th></tr> </thead>'
+                    content = '<tbody>'
+                    for(var key in data){
+                        var summerization = data[key];
+                        content = content + '<tr>' + '<td>' + summerization + '</td>' + '<td>' ;                  
+                    }
+                    content = content + '</tbody>' + '</table>'
+                    content = head + content
+                    return content
+                }
+        </script>
+    </head>
+    <body>
+            <!--<script>document.write("<p1>hello {{name}}</p1>")</script>-->
+            <div style="padding: 50px 50px 50px;">
+
+                <form class="bs-example bs-example-form" role="form" method="post">
+                    <div class="input-group">
+                        <span class="input-group-addon">标题</span>
+                        <input type="text" class="form-control" name="title" placeholder="新闻标题" />
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon">新闻</span>
+                        <input type="text" class="form-control" name="string" placeholder="新闻文本内容" />
+                    </div>
+                    
+                    <button type="submit" class="btn btn-default">完成</button>
+                </form>
+            </div>
+            <script>document.write(myfunction())</script>
+
+            <div id="footer" style="background-color:#FFA500;clear:both;text-align:center;">
+                测试</div>
+    </body>
+</html>
